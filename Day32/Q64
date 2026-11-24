@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+int main() {
+    long long num;
+    int freq[10] = {0};
+    int digit, i, maxDigit = 0;
+
+    printf("Enter a number: ");
+    scanf("%lld", &num);
+
+    // Make negative number positive
+    if (num < 0)
+        num = -num;
+
+    // Special case for 0
+    if (num == 0) {
+        freq[0] = 1;
+    }
+
+    // Count frequency of each digit
+    while (num > 0) {
+        digit = num % 10;
+        freq[digit]++;
+        num = num / 10;
+    }
+
+    // Find digit with maximum frequency
+    for (i = 1; i < 10; i++) {
+        if (freq[i] > freq[maxDigit]) {
+            maxDigit = i;
+        }
+    }
+
+    printf("Most frequent digit = %d\n", maxDigit);
+    printf("Frequency = %d\n", freq[maxDigit]);
+
+    return 0;
+}
